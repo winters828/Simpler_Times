@@ -1,0 +1,152 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/Menu Assets/MenuBackground2.jpg" type="Texture" id=1]
+[ext_resource path="res://assets/Menu Assets/Left Arrow Button.png" type="Texture" id=2]
+[ext_resource path="res://scripts/NewGameMenu.gd" type="Script" id=3]
+[ext_resource path="res://assets/Menu Assets/Left Arrow Pressed.png" type="Texture" id=4]
+[ext_resource path="res://assets/Menu Assets/Start Button.png" type="Texture" id=5]
+[ext_resource path="res://assets/Menu Assets/Start Pressed.png" type="Texture" id=6]
+[ext_resource path="res://assets/Menu Assets/MapHolder.png" type="Texture" id=7]
+[ext_resource path="res://assets/Menu Assets/MapOutline.png" type="Texture" id=8]
+
+[node name="NewGameMenu" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="MenuBackground2" type="Sprite" parent="."]
+position = Vector2( 300, 512 )
+texture = ExtResource( 1 )
+
+[node name="BackButton" type="TouchScreenButton" parent="MenuBackground2"]
+position = Vector2( 175, 350 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 2 )
+pressed = ExtResource( 4 )
+
+[node name="StartButton" type="TouchScreenButton" parent="MenuBackground2"]
+position = Vector2( -100, 350 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 5 )
+pressed = ExtResource( 6 )
+
+[node name="Period" type="SpinBox" parent="MenuBackground2"]
+margin_left = 50.0
+margin_top = -125.0
+margin_right = 150.0
+margin_bottom = -100.0
+rect_scale = Vector2( 2.5, 2.5 )
+min_value = 10.0
+value = 10.0
+align = 1
+
+[node name="Label" type="Label" parent="MenuBackground2/Period"]
+margin_left = 16.5
+margin_top = 25.0
+margin_right = 66.5
+margin_bottom = 50.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Mass"
+align = 1
+valign = 1
+
+[node name="Octaves" type="SpinBox" parent="MenuBackground2"]
+margin_left = 50.0
+margin_top = -250.0
+margin_right = 150.0
+margin_bottom = -225.0
+rect_scale = Vector2( 2.5, 2.5 )
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+align = 1
+
+[node name="Label" type="Label" parent="MenuBackground2/Octaves"]
+margin_left = 16.5
+margin_top = 25.0
+margin_right = 68.5
+margin_bottom = 50.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Ocatves"
+align = 1
+valign = 1
+
+[node name="Seed" type="SpinBox" parent="MenuBackground2"]
+margin_left = 50.0
+margin_top = -500.0
+margin_right = 150.0
+margin_bottom = -475.0
+rect_scale = Vector2( 2.5, 2.5 )
+min_value = -9.22337e+18
+max_value = 9.22337e+18
+align = 1
+
+[node name="Label" type="Label" parent="MenuBackground2/Seed"]
+margin_left = 16.5
+margin_top = 25.0
+margin_right = 66.5
+margin_bottom = 50.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Seed"
+align = 1
+valign = 1
+
+[node name="line" type="SpinBox" parent="MenuBackground2"]
+margin_left = 50.0
+margin_top = -375.0
+margin_right = 150.0
+margin_bottom = -350.0
+rect_scale = Vector2( 2.5, 2.5 )
+min_value = -100.0
+align = 1
+
+[node name="Label" type="Label" parent="MenuBackground2/line"]
+margin_left = -1.0
+margin_top = 25.0
+margin_right = 89.0
+margin_bottom = 50.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Ground/Water"
+align = 1
+valign = 1
+
+[node name="Key" type="Label" parent="MenuBackground2"]
+margin_left = -250.0
+margin_top = 110.0
+margin_bottom = 235.0
+rect_scale = Vector2( 2, 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Ocatives
+   Thin 1 - 10 Thick Strands
+Land mass / Zoom
+Out 10  - 100  In
+Seed
+Input the seed of the map
+or leave 0 for a random map"
+align = 1
+
+[node name="Keytitle" type="Label" parent="MenuBackground2"]
+margin_left = -219.0
+margin_top = 45.0
+margin_right = -69.0
+margin_bottom = 65.0
+rect_scale = Vector2( 3, 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Map Generation"
+align = 1
+valign = 1
+
+[node name="MapOutline" type="Sprite" parent="MenuBackground2"]
+position = Vector2( -125, -230 )
+texture = ExtResource( 8 )
+
+[node name="MapViewer" type="Sprite" parent="MenuBackground2/MapOutline"]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 7 )
+
+[connection signal="released" from="MenuBackground2/BackButton" to="." method="_on_BackButton_released"]
+[connection signal="released" from="MenuBackground2/StartButton" to="." method="_on_StartButton_released"]
+[connection signal="value_changed" from="MenuBackground2/Period" to="." method="_on_Period_value_changed"]
+[connection signal="value_changed" from="MenuBackground2/Octaves" to="." method="_on_Octaves_value_changed"]
+[connection signal="value_changed" from="MenuBackground2/Seed" to="." method="_on_Seed_value_changed"]
+[connection signal="value_changed" from="MenuBackground2/line" to="." method="_on_line_value_changed"]
